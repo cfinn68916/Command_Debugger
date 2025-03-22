@@ -29,7 +29,7 @@ public class WaitUntilCommand extends Command {
 
   @Override
   public String repr() {
-    return "Until("+m_condition.getClass().getSimpleName()+")";
+    return "{\"type\":\"Until\",\"chooser\":\""+m_condition.getClass().getSimpleName()+"\"}";
   }
 
   /**

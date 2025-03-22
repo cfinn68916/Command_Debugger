@@ -31,13 +31,13 @@ public class ParallelDeadlineGroup extends Command {
   private InterruptionBehavior m_interruptBehavior = InterruptionBehavior.kCancelIncoming;
   @Override
   public String repr() {
-    StringBuilder ret= new StringBuilder("ParallelDeadline(");
+    StringBuilder ret= new StringBuilder("[");
     ret.append(m_deadline.repr());
     for (Command command : m_commands.keySet()) {
       ret.append(", ").append(command.repr());
     }
-    ret.append(")");
-    return ret.toString();
+    ret.append("]");
+    return "{\"type\":\"ParallelDeadline\", \"subcommands\":"+ ret +"}";
   }
 
   /**

@@ -39,12 +39,12 @@ public class ParallelCommandGroup extends Command {
 
   @Override
   public String repr() {
-    StringBuilder ret= new StringBuilder("Parallel(");
+    StringBuilder ret= new StringBuilder("[");
     for (Command command : m_commands.keySet()) {
       ret.append(command.repr()).append(", ");
     }
-    ret.append(")");
-    return ret.toString();
+    ret.append("]");
+    return "{\"type\":\"Parallel\", \"subcommands\":"+ ret +"}";
   }
 
   /**

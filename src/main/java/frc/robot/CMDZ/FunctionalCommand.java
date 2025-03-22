@@ -49,7 +49,7 @@ public class FunctionalCommand extends Command {
 
   @Override
   public String repr() {
-    return "Functional()";
+    return "{\"type\":\"Functional\"}";
   }
 
   @Override

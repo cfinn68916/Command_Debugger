@@ -60,7 +60,7 @@ public class ProxyCommand extends Command {
 
   @Override
   public String repr() {
-    return "Proxy("+commandStore.map(Command::repr).orElse("")+")";
+    return "{\"type\":\"Proxy\",\"subcommands\":["+commandStore.map(Command::repr)+"]}";
   }
 
   @Override

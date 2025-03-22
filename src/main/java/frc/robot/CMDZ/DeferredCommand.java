@@ -46,7 +46,7 @@ public class DeferredCommand extends Command {
 
   @Override
   public String repr() {
-    return "Deferred";
+    return "{\"type\":\"Deferred\"}";
   }
 
   @Override

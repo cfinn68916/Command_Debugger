@@ -57,13 +57,12 @@ public class SelectCommand<K> extends Command {
   }
   @Override
   public String repr() {
-    StringBuilder ret= new StringBuilder("Select(");
-    ret.append(m_selector.getClass().getSimpleName());
-    for (var k:m_commands.entrySet()) {
-      ret.append(",").append(k.getKey()).append(",").append(k.getValue().repr());
+    StringBuilder ret= new StringBuilder("[");
+    for (var cmPair : m_commands.entrySet()) {
+      ret.append("[\"").append(cmPair.getKey().toString()).append("\",").append(cmPair.getValue().repr()).append("],");
     }
-    ret.append(")");
-    return ret.toString();
+    ret.append("]");
+    return "{\"type\":\"Select\", \"subcommands\":"+ ret +", \"chooser\":\""+m_selector.getClass().getSimpleName()+"\"}";
   }
 
   @Override

@@ -23,7 +23,7 @@ public class InstantCommand extends FunctionalCommand {
   }
   @Override
   public String repr() {
-    return "Instant()";
+    return "{\"type\":\"Instant\"}";
   }
 
   /**

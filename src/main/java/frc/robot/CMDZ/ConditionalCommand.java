@@ -56,7 +56,7 @@ public class ConditionalCommand extends Command {
 
   @Override
   public String repr() {
-    return "Cond("+m_condition.getClass().getSimpleName()+","+m_onTrue.getClass().getSimpleName()+","+m_onFalse.getClass().getSimpleName()+")";
+    return "{\"type\":\"Conditional\", \"chooser\":\""+m_condition.getClass().getSimpleName()+"\",\"subcommands\":["+m_onTrue.repr()+","+m_onFalse.repr()+"]}";
   }
 
   @Override

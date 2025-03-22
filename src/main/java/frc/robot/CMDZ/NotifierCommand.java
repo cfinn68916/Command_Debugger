@@ -36,7 +36,7 @@ public class NotifierCommand extends Command {
   }
   @Override
   public String repr() {
-    return "Notifier()";
+    return "{\"type\":\"Notifier\"}";
   }
 
   @Override

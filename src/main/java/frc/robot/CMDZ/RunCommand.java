@@ -27,6 +27,6 @@ public class RunCommand extends FunctionalCommand {
 
   @Override
   public String repr() {
-    return "Run()";
+    return "{\"type\":\"Run\"}";
   }
 }

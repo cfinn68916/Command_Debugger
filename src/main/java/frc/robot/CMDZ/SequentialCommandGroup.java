@@ -92,13 +92,13 @@ public class SequentialCommandGroup extends Command {
   }
 
   @Override
-  public String getName() {
-    StringBuilder ret= new StringBuilder("Sequence(");
+  public String repr() {
+    StringBuilder ret= new StringBuilder("[");
     for (Command command : m_commands) {
-      ret.append(command.getName()).append(", ");
+      ret.append(command.repr()).append(", ");
     }
-    ret.append(")");
-    return ret.toString();
+    ret.append("]");
+    return "{\"type\":\"Sequence\", \"subcommands\":"+ ret +"}";
   }
 
   @Override

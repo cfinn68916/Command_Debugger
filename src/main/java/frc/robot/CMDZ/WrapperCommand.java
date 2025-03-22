@@ -34,7 +34,7 @@ public abstract class WrapperCommand extends Command {
 
   @Override
   public String repr() {
-    return super.repr();
+    return m_command.repr();
   }
 
   /** The initial subroutine of a command. Called once when the command is initially scheduled. */

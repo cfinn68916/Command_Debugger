@@ -35,7 +35,7 @@ public class WaitCommand extends Command {
 
   @Override
   public String repr() {
-    return "Wait(" + m_duration + ")";
+    return "{\"type\":\"Wait\",\"data\":+"+m_duration+"}";
   }
 
   /**

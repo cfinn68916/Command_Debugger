@@ -24,7 +24,7 @@ public class PrintCommand extends InstantCommand {
 
   @Override
   public String repr() {
-    return "Print("+message+")";
+    return "{\"type\":\"Print\",\"data\":\"+"+message+"\"}";
   }
 
   @Override

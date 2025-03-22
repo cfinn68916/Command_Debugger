@@ -37,7 +37,7 @@ public class StartEndCommand extends FunctionalCommand {
 
   @Override
   public String repr() {
-    return "StartEnd()";
+    return "{\"type\":\"StartEnd\"}";
   }
 
   private static Consumer<Boolean> droppingParameter(Runnable run) {

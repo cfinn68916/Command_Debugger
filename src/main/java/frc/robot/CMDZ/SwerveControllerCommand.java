@@ -86,7 +86,7 @@ public class SwerveControllerCommand extends Command {
 
   @Override
   public String repr() {
-    return "Swerve("+m_trajectory.toString()+")";
+    return "{\"type\":\"SwerveController\",\"data\":\""+m_trajectory.toString()+"\"}";
   }
 
   /**

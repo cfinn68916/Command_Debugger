@@ -146,7 +146,7 @@ public class MecanumControllerCommand extends Command {
   }
   @Override
   public String repr() {
-    return "Mecanum("+m_trajectory.toString()+")";
+    return "{\"type\":\"MecanumController\",\"data\":\""+m_trajectory.toString()+"\"}";
   }
 
   /**
