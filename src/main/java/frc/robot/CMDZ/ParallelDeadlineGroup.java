@@ -37,7 +37,7 @@ public class ParallelDeadlineGroup extends Command {
       ret.append(", ").append(command.repr());
     }
     ret.append("]");
-    return "{\"type\":\"ParallelDeadline\", \"subcommands\":"+ ret +"}";
+    return "{\"type\":\"Deadline\", \"subcommands\":"+ ret +"}";
   }
 
   /**

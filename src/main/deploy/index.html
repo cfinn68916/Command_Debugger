@@ -1,10 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script src="/jquery.min.js"></script>
+        <style>
+            .cmd{
+                border: solid;
+                border-width: 1px;
+                text-align: center;
+                width: fit-content;
+                padding: 4px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="asd">
 
-</body>
+        </div>
+        <script>
+            var runn;
+            function makeHTML(ob){
+                if(ob.type=="Print"){
+                    return `<div class="cmd">Print(${ob.data})</div>`
+                }
+                if(ob.type=="Sequence"){
+                    var prog="<div class='cmd' style='display: flex'><p>Sequence</p>";
+                    for (const progElement of ob.subcommands) {
+                        prog+=makeHTML(progElement)
+                    }
+                    return prog+"</div>"
+                }
+                if(ob.type=="Parallel"){
+                    var prog="<div class='cmd' style=''><p>Parallel</p>";
+                    for (const progElement of ob.subcommands) {
+                        prog+=makeHTML(progElement)
+                    }
+                    return prog+"</div>"
+                }
+                if(ob.type=="Race"){
+                    var prog="<div class='cmd' style=''><p>Parallel Race</p>";
+                    for (const progElement of ob.subcommands) {
+                        prog+=makeHTML(progElement)
+                    }
+                    return prog+"</div>"
+                }
+                if(ob.type=="Deadline"){
+                    var prog="<div class='cmd' style=''><p>Parallel with Deadline</p>";
+                    prog+=makeHTML(ob.subcommands[0])+"<hr>"
+                    for (let i = 1; i < ob.subcommands.length; i++) {
+                        prog+=makeHTML(ob.subcommands[i])
+                    }
+                    return prog+"</div>"
+                }
+
+            }
+            $(document).ready(async function () {
+                var cmd=await fetch("/commands_running");
+                runn=await cmd.text();
+                runn=runn.replaceAll(",]","]")
+                runn=runn.replaceAll(",}","}")
+                console.log(JSON.parse(runn)[0])
+                $("#asd").append(makeHTML(JSON.parse(runn)[0]))
+
+            });
+        </script>
+    </body>
 </html>

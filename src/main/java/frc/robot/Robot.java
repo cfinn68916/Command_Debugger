@@ -93,7 +93,7 @@ public class Robot extends TimedRobot
     
     /** This method is called once when teleop is enabled. */
     @Override
-    public void teleopInit() {
+    public void teleopInit(){
         Commands.print("cmd1").repeatedly().withTimeout(10.0).andThen(Commands.print("sad").repeatedly()).schedule();
     }
     

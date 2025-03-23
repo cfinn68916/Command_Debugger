@@ -95,7 +95,7 @@ public class SequentialCommandGroup extends Command {
   public String repr() {
     StringBuilder ret= new StringBuilder("[");
     for (Command command : m_commands) {
-      ret.append(command.repr()).append(", ");
+      ret.append(command.repr()).append(",");
     }
     ret.append("]");
     return "{\"type\":\"Sequence\", \"subcommands\":"+ ret +"}";

@@ -67,7 +67,7 @@ public final class CommandScheduler implements Sendable, AutoCloseable {
   private final Map<Command, Exception> m_composedCommands = new WeakHashMap<>();
 
   // A set of the currently-running commands.
-  private final Set<Command> m_scheduledCommands = new LinkedHashSet<>();
+  public final Set<Command> m_scheduledCommands = new LinkedHashSet<>();
 
   // A map from required subsystems to their requiring commands. Also used as a set of the
   // currently-required subsystems.

@@ -29,10 +29,10 @@ public class ParallelRaceGroup extends Command {
   public String repr() {
     StringBuilder ret= new StringBuilder("[");
     for (Command command : m_commands) {
-      ret.append(command.repr()).append(", ");
+      ret.append(command.repr()).append(",");
     }
     ret.append("]");
-    return "{\"type\":\"ParallelRace\", \"subcommands\":"+ ret +"}";
+    return "{\"type\":\"Race\", \"subcommands\":"+ ret +"}";
   }
 
   /**
