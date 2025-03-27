@@ -60,6 +60,11 @@ public class ConditionalCommand extends Command {
   }
 
   @Override
+  public String status() {
+    return "{\"selected\":\""+(m_selectedCommand==m_onTrue?"true":"false")+"\", \"substatus\":"+m_selectedCommand.status()+"}";
+  }
+
+  @Override
   public void execute() {
     m_selectedCommand.execute();
   }

@@ -44,6 +44,9 @@ public abstract class Command implements Sendable {
   public String repr(){
     return getClass().getSuperclass().getSimpleName();
   }
+  public String status(){
+    return "{}";
+  }
   /** The main body of a command. Called repeatedly while the command is scheduled. */
   public void execute() {}
 

@@ -64,6 +64,11 @@ public class SelectCommand<K> extends Command {
     ret.append("]");
     return "{\"type\":\"Select\", \"subcommands\":"+ ret +", \"chooser\":\""+m_selector.getClass().getSimpleName()+"\"}";
   }
+  @Override
+  public String status() {
+    return "{\"selected\":"+m_selectedCommand.repr()+", \"substatus\":"+m_selectedCommand.status()+"}";
+  }
+
 
   @Override
   public void initialize() {

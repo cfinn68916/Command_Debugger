@@ -6,6 +6,7 @@ package frc.robot.CMDZ;
 
 import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -33,6 +34,16 @@ public class ParallelRaceGroup extends Command {
     }
     ret.append("]");
     return "{\"type\":\"Race\", \"subcommands\":"+ ret +"}";
+  }
+  @Override
+  public String status() {
+    StringBuilder ret= new StringBuilder("[");
+    for (Command command : m_commands) {
+      ret.append(command.status()).append(",");
+    }
+    ret.append("]");
+
+    return "{\"substatus\":"+ret+"}";
   }
 
   /**

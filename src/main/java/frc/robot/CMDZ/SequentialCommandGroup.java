@@ -9,6 +9,7 @@ import frc.robot.Server;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A command composition that runs a list of commands in sequence.
@@ -99,6 +100,10 @@ public class SequentialCommandGroup extends Command {
     }
     ret.append("]");
     return "{\"type\":\"Sequence\", \"subcommands\":"+ ret +"}";
+  }
+  @Override
+  public String status() {
+    return "{\"substatus\":"+m_commands.get(m_currentCommandIndex).status()+",\"index\":"+m_currentCommandIndex+"}";
   }
 
   @Override

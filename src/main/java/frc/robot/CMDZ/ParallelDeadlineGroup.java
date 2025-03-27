@@ -39,6 +39,19 @@ public class ParallelDeadlineGroup extends Command {
     ret.append("]");
     return "{\"type\":\"Deadline\", \"subcommands\":"+ ret +"}";
   }
+  @Override
+  public String status() {
+    StringBuilder ret= new StringBuilder("[");
+    StringBuilder ena_ret= new StringBuilder("[");
+    for (Map.Entry<Command, Boolean> command : m_commands.entrySet()) {
+      ret.append(command.getKey().status()).append(",");
+      ena_ret.append(command.getValue()?"true":"false").append(",");
+    }
+    ret.append("]");
+    ena_ret.append("]");
+
+    return "{\"substatus\":"+ret+",\"subrunning\":"+ena_ret+"}";
+  }
 
   /**
    * Creates a new ParallelDeadlineGroup. The given commands, including the deadline, will be

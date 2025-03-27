@@ -62,6 +62,11 @@ public class ProxyCommand extends Command {
   public String repr() {
     return "{\"type\":\"Proxy\",\"subcommands\":["+commandStore.map(Command::repr)+"]}";
   }
+  @Override
+  public String status() { // This might not work
+    return "{\"selected\":"+m_command.repr()+", \"substatus\":"+m_command.status()+"}";
+  }
+
 
   @Override
   public void initialize() {

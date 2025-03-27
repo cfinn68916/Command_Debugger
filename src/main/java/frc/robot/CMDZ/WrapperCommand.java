@@ -37,6 +37,11 @@ public abstract class WrapperCommand extends Command {
     return m_command.repr();
   }
 
+  @Override
+  public String status() {
+    return m_command.status();
+  }
+
   /** The initial subroutine of a command. Called once when the command is initially scheduled. */
   @Override
   public void initialize() {

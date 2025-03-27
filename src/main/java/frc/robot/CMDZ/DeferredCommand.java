@@ -50,6 +50,12 @@ public class DeferredCommand extends Command {
   }
 
   @Override
+  public String status() {
+    return "{\"selected\":"+m_command.repr()+", \"substatus\":"+m_command.status()+"}";
+  }
+
+
+  @Override
   public void initialize() {
     var cmd = m_supplier.get();
     if (cmd != null) {

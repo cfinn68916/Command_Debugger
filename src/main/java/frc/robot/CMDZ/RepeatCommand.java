@@ -41,8 +41,10 @@ public class RepeatCommand extends Command {
   public String repr() {
     return "{\"type\":\"Repeat\",\"subcommands\":["+m_command.repr()+"]}";
   }
-
-
+  @Override
+  public String status() {
+    return "{\"substatus\":"+m_command.status()+"}";
+  }
   @Override
   public void initialize() {
     m_ended = false;

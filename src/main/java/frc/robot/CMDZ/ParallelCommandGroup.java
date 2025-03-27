@@ -40,11 +40,25 @@ public class ParallelCommandGroup extends Command {
   @Override
   public String repr() {
     StringBuilder ret= new StringBuilder("[");
-    for (Command command : m_commands.keySet()) {
-      ret.append(command.repr()).append(",");
+    for (Map.Entry<Command, Boolean> command : m_commands.entrySet()) {
+      ret.append(command.getKey().repr()).append(",");
     }
     ret.append("]");
     return "{\"type\":\"Parallel\", \"subcommands\":"+ ret +"}";
+  }
+
+  @Override
+  public String status() {
+    StringBuilder ret= new StringBuilder("[");
+    StringBuilder ena_ret= new StringBuilder("[");
+    for (Map.Entry<Command, Boolean> command : m_commands.entrySet()) {
+      ret.append(command.getKey().status()).append(",");
+      ena_ret.append(command.getValue()?"true":"false").append(",");
+    }
+    ret.append("]");
+    ena_ret.append("]");
+
+    return "{\"substatus\":"+ret+",\"subrunning\":"+ena_ret+"}";
   }
 
   /**
