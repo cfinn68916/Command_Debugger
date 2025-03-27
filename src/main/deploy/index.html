@@ -5,12 +5,32 @@
         <title>Title</title>
         <script src="/jquery.min.js"></script>
         <style>
-            .cmd{
-                border: solid;
-                border-width: 1px;
+            .cmd_inner{
+                border: 1px solid;
                 text-align: center;
                 width: fit-content;
                 padding: 4px;
+            }
+            .cmd_outer{
+                text-align: center;
+                width: fit-content;
+                padding: 4px;
+                display: flex;
+            }
+            .breakpoint_area{
+                width: 20px;
+            }
+            .breakpoint_symbol_unclicked:hover{
+                display: block;
+            }
+            .breakpoint_area:hover~.breakpoint_symbol_unclicked{
+                display:block;
+            }
+            .breakpoint_symbol_unclicked{
+                display: none;
+            }
+            .breakpoint_symbol_clicked{
+                display: block;
             }
         </style>
     </head>
@@ -20,36 +40,56 @@
         </div>
         <script>
             var runn;
-            function makeHTML(ob){
+            function onBreakClick(urid){
+                if($(`#urid_${urid}`).hasClass("breakpoint_symbol_unclicked")){
+                    $(`#urid_${urid}`).removeClass("breakpoint_symbol_unclicked").addClass("breakpoint_symbol_clicked");
+                }else{
+                    $(`#urid_${urid}`).addClass("breakpoint_symbol_unclicked").removeClass("breakpoint_symbol_clicked");
+                }
+            }
+
+            function makeBreakpoint(urid){
+                return `<span class='breakpoint_area'></span><p class='breakpoint_symbol_unclicked' id='urid_${urid}' onclick="onBreakClick('${urid}')">🔴</p>`
+            }
+            function makeHTML(ob, urid){
+                return "<div class='cmd_outer'>"+makeHTMLInner(ob, urid)+makeBreakpoint(urid)+"</div>"
+            }
+            function makeHTMLInner(ob, urid){
                 if(ob.type=="Print"){
-                    return `<div class="cmd">Print(${ob.data})</div>`
+                    return `<div class="cmd_inner">Print(${ob.data})</div>`
                 }
                 if(ob.type=="Sequence"){
-                    var prog="<div class='cmd' style='display: flex'><p>Sequence</p>";
+                    var prog="<div class='cmd_inner' style='display: flex'><p>Sequence</p>";
+                    var ind=0; // TODO: use loop
                     for (const progElement of ob.subcommands) {
-                        prog+=makeHTML(progElement)
+                        prog+=makeHTML(progElement, urid+ind+"_")
+                        ind++;
                     }
                     return prog+"</div>"
                 }
                 if(ob.type=="Parallel"){
-                    var prog="<div class='cmd' style=''><p>Parallel</p>";
+                    var prog="<div class='cmd_inner' style=''><p>Parallel</p>";
+                    var ind=0; // TODO: use loop
                     for (const progElement of ob.subcommands) {
-                        prog+=makeHTML(progElement)
+                        prog+=makeHTML(progElement, urid+ind+"_")
+                        ind++;
                     }
                     return prog+"</div>"
                 }
                 if(ob.type=="Race"){
-                    var prog="<div class='cmd' style=''><p>Parallel Race</p>";
+                    var prog="<div class='cmd_inner' style=''><p>Parallel Race</p>";
+                    var ind=0; // TODO: use loop
                     for (const progElement of ob.subcommands) {
-                        prog+=makeHTML(progElement)
+                        prog+=makeHTML(progElement, urid+ind+"_")
+                        ind++;
                     }
                     return prog+"</div>"
                 }
                 if(ob.type=="Deadline"){
-                    var prog="<div class='cmd' style=''><p>Parallel with Deadline</p>";
-                    prog+=makeHTML(ob.subcommands[0])+"<hr>"
+                    var prog="<div class='cmd_inner' style=''><p>Parallel with Deadline</p>";
+                    prog+=makeHTML(ob.subcommands[0], urid+"0_")+"<hr>"
                     for (let i = 1; i < ob.subcommands.length; i++) {
-                        prog+=makeHTML(ob.subcommands[i])
+                        prog+=makeHTML(ob.subcommands[i], urid+i+"_")
                     }
                     return prog+"</div>"
                 }
@@ -61,7 +101,7 @@
                 runn=runn.replaceAll(",]","]")
                 runn=runn.replaceAll(",}","}")
                 console.log(JSON.parse(runn)[0])
-                $("#asd").append(makeHTML(JSON.parse(runn)[0]))
+                $("#asd").append(makeHTML(JSON.parse(runn)[0], "0_"))
 
             });
         </script>
